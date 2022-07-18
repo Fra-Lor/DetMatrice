@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int det;
+    int start;
+
+  printf("Benvenuti in Algebrab: l'applicazione ideale per calcolare il determinante di una matrice quadrata di massimo 4 righe e 4 colonne. Premi 1 per cominciare!\n");
+  scanf("%d", &start);
+  if(start == 1)
+  {
+      int righe;
+      int colonne;
+      int max_r= 4;
+      printf("Inserisci numero di righe della matrice:\n");
+      scanf("%d", &righe);
+      printf("L'utente ha inserito %d righe.\n", righe);
+      if(righe > max_r)
+        {
+            printf("Non siamo in grado di risolvere problemi cosi' complessi...\nPer favore reinserisci numero di righe:\n");
+            scanf("%d", &righe);
+                if(righe > max_r)
+                {
+                printf("Non siamo in grado di risolvere problemi cosi' complessi, scegliamo noi per te: inseriamo 4 righe!\n");
+                righe=4;
+                }
+        }
+        colonne=righe;
+
+    signed int matrice[righe][colonne];
+    for(int i=0; i < righe; i++)
+    {
+      for(int k=0; k< colonne; k++)
+      {
+         signed int elemento;
+          printf("Inserisci l'elemento corrsipondente alle coordinate %dx%d:\n",i,k);
+          scanf("%d", &elemento);
+          matrice[i][k]=elemento;
+      }
+    }
+ printf("La matrice inserita e':\n");
+ for(int i=0; i < righe; i++)
+ {
+      for(int k=0; k< colonne; k++)
+    {
+          printf("%d ",matrice[i][k]);
+      if(k == colonne-1)
+      {
+          printf("\n");
+      }
+    }
+
+ }
+
+    if (righe==2){
+      signed int el1=matrice[0][0];
+      signed int el2=matrice[0][1];
+      signed int el3=matrice[1][0];
+      signed int el4=matrice[1][1];
+
+       det=(el1*el4)-(el2*el3);
+
+   }
+   else if (righe==3){
+        det=determinanteSar(matrice);
+
+   }
+   else if (righe==4){
+    det=determinanteLap(matrice);
+
+   }
+
+   printf("Il determinante della matrice e': %d",det);
+
+}
+   else
+   {
+       printf("Prova a riavviare il programma inserendo 1!");
+
+   }
+    return 0;
+}
+
+//funzione per determinante
+int determinanteLap(int mat[4][4])
+{
+   signed int mat1 [3][3];
+   signed int mat2 [3][3];
+   signed int mat3 [3][3];
+   signed int mat4 [3][3];
+   signed int el1=mat [0][0];
+   signed int el2=mat [1][0];
+   signed int el3=mat [2][0];
+   signed int el4=mat [3][0];
+
+    mat1 [0][0]=mat [1][1];
+    mat1 [0][1]=mat [1][2];
+    mat1 [0][2]=mat [1][3];
+    mat1 [1][0]=mat [2][1];
+    mat1 [1][1]=mat [2][2];
+    mat1 [1][2]=mat [2][3];
+    mat1 [2][0]=mat [3][1];
+    mat1 [2][1]=mat [3][2];
+    mat1 [2][2]=mat [3][3];
+
+    mat2 [0][0]=mat [0][1];
+    mat2 [0][1]=mat [0][2];
+    mat2 [0][2]=mat [0][3];
+    mat2 [1][0]=mat [2][1];
+    mat2 [1][1]=mat [2][2];
+    mat2 [1][2]=mat [2][3];
+    mat2 [2][0]=mat [3][1];
+    mat2 [2][1]=mat [3][2];
+    mat2 [2][2]=mat [3][3];
+
+    mat3 [0][0]=mat [0][1];
+    mat3 [0][1]=mat [0][2];
+    mat3 [0][2]=mat [0][3];
+    mat3 [1][0]=mat [1][1];
+    mat3 [1][1]=mat [1][2];
+    mat3 [1][2]=mat [1][3];
+    mat3 [2][0]=mat [3][1];
+    mat3 [2][1]=mat [3][2];
+    mat3 [2][2]=mat [3][3];
+
+    mat4 [0][0]=mat [0][1];
+    mat4 [0][1]=mat [0][2];
+    mat4 [0][2]=mat [0][3];
+    mat4 [1][0]=mat [1][1];
+    mat4 [1][1]=mat [1][2];
+    mat4 [1][2]=mat [1][3];
+    mat4 [2][0]=mat [2][1];
+    mat4 [2][1]=mat [2][2];
+    mat4 [2][2]=mat [2][3];
+
+    int det=(el1*determinanteSar(mat1))-(el2*determinanteSar(mat2))+(el3*determinanteSar(mat3))-(el4*determinanteSar(mat4));
+    return det;
+
+}
+int determinanteSar(int matrice[3][3])
+{
+    int el1=matrice[0][0];
+    int el2=matrice[0][1];
+    int el3=matrice[0][2];
+    int el4=matrice[1][0];
+    int el5=matrice[1][1];
+    int el6=matrice[1][2];
+    int el7=matrice[2][0];
+    int el8=matrice[2][1];
+    int el9=matrice[2][2];
+    int det=(el1*el5*el9)+(el2*el6*el7)+(el4*el8*el3)-(el3*el5*el7)-(el6*el8*el1)-(el2*el4*el9);
+    return det;
+}
