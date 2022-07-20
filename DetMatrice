@@ -140,15 +140,15 @@ int determinanteLap(int mat[4][4])
 }
 int determinanteSar(int matrice[3][3])
 {
-    int el1=matrice[0][0];
-    int el2=matrice[0][1];
-    int el3=matrice[0][2];
-    int el4=matrice[1][0];
-    int el5=matrice[1][1];
-    int el6=matrice[1][2];
-    int el7=matrice[2][0];
-    int el8=matrice[2][1];
-    int el9=matrice[2][2];
+    signed int el1=matrice[0][0];
+    signed int el2=matrice[0][1];
+    signed int el3=matrice[0][2];
+    signed int el4=matrice[1][0];
+    signed int el5=matrice[1][1];
+    signed int el6=matrice[1][2];
+    signed int el7=matrice[2][0];
+    signed int el8=matrice[2][1];
+    signed int el9=matrice[2][2];
     int det=(el1*el5*el9)+(el2*el6*el7)+(el4*el8*el3)-(el3*el5*el7)-(el6*el8*el1)-(el2*el4*el9);
     return det;
 }
